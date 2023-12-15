@@ -32,5 +32,5 @@ app.use("/metodos", rotasMetodos)
 
 // Aplicativo fique escutando na porta 8080, esperando alguma requisição
 app.listen(porta, () => {
-    console.log('Servidor rodando!')
+    console.log(`Servidor rodando na porta ${porta}!`)
 })
