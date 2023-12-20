@@ -20,4 +20,21 @@ export default class RepositorioProdutos {
         const produto = this.itens.find((produto) => produto.codigo === codigo)
         return produto
     }
+
+    alterarPorCodigo(codigo: string, nome?: string, preco?: number) {
+        const indice = this.itens.findIndex((produto) => produto.codigo === codigo)
+        if (indice >= 0 && indice < this.itens.length) {
+            if (nome) {
+                this.itens[indice].nome = nome
+            }
+            if (preco) {
+                this.itens[indice].preco = preco
+            }
+        }
+    }
+
+    deletarPorCodigo(codigo: string) {
+        const dadosAtualizados = this.itens.filter((produto) => produto.codigo !== codigo)
+        this.itens = [...dadosAtualizados]
+    }
 }

@@ -1,9 +1,11 @@
 import { IconeEdicao, IconeLixo } from "./Icones";
 import { Link } from "react-router-dom";
 import useProdutos from "../hooks/useProdutos";
+import useNavegar from "../hooks/useNavegar";
 
 export default function Tabela() {
-    const { produtos } = useProdutos()
+    const { produtos, excluirProduto } = useProdutos()
+    const { voltarInicio } = useNavegar()
 
     function renderizarCabecalho() {
         return (
@@ -43,7 +45,11 @@ export default function Tabela() {
                 </button>
 
                 <button
-                    onClick={() => { }}
+                    onClick={() => {
+                        excluirProduto(codigo)
+                        console.log("Botão excluir")
+                        voltarInicio()
+                    }}
                     className={`
                         flex justify-center items-center
                         text-red-500 rounded-full p-2 m-1
