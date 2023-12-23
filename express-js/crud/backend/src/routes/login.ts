@@ -1,5 +1,6 @@
 import { Router } from "express";
 import RepositorioUsuarios from "@src/core/usuarios/RepositorioUsuarios";
+import jwt from "jsonwebtoken"
 
 const router = Router()
 const repo = new RepositorioUsuarios()
@@ -11,11 +12,14 @@ router.post("/", (req, res) => {
         res.sendStatus(204)
     }
 
-    if (!repo.loginCorreto(email, senha)) {
+    else if (!repo.loginCorreto(email, senha)) {
         res.sendStatus(204)
     }
 
-    res.status(200).send("Login Correto")
+    else {
+        const token = jwt.sign({ email, senha }, process.env.ACCESS_TOKEN_SECRET as "secret")
+        res.status(200).json({ token })
+    }
 })
 
 export default router
