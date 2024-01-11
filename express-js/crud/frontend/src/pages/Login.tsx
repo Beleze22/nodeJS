@@ -25,6 +25,8 @@ export async function actionLogin({ request }: any) {
         email: dadosFormulario.get("email"),
         senha: dadosFormulario.get("senha")
     }
+    // const resposta = await Requisicao.post("/login", dadosParaVerificar)
+    // window.alert(resposta.token)
     try {
         const resposta = await Requisicao.post("/login", dadosParaVerificar)
         if (resposta.token) {

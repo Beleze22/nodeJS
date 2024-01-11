@@ -10,7 +10,9 @@ export default function verificaToken(req: any, res: any, next: any) {
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as "Secret",
         (err: any) => {
-            res.status(403).send()
+            if (err) {
+                res.status(403).send()
+            }
         })
 
     next()
